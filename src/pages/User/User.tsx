@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+import "./User.css";
 
 const User = () => {
   const formData = useSelector((state: RootState) => state.form.addUserForm);
@@ -8,14 +9,21 @@ const User = () => {
     <div
       className="container"
       style={{
-        backgroundColor: formData.color || "#ffffff",
+        backgroundColor: formData.backgroundColor || "#ffffff",
         minHeight: "100vh",
         minWidth: "100vw",
       }}
     >
-      <div className="row justify-content-center">
+      <div
+        className="row justify-content-center backgroundImage"
+        style={{
+          backgroundImage: formData.backgroundImage
+            ? `url(${formData.backgroundImage})`
+            : "none",
+        }}
+      >
         <div className="col-12 col-md-8 text-center">
-          <h1>User Details</h1>
+          <h1 style={{ color: formData.textColor }}>User Details</h1>
           {formData.image && (
             <img
               className="img-fluid mb-3"
@@ -25,19 +33,28 @@ const User = () => {
             />
           )}
           <div className="d-flex flex-column align-items-center">
-            <div className="d-flex gap-5">
+            <div className="d-flex gap-5" style={{ color: formData.textColor }}>
               {formData.firstName && <p> {formData.firstName}</p>}
               {formData.lastName && <p>{formData.lastName}</p>}
             </div>
             <div className="d-flex gap-5">
               {formData.email && (
-                <p>
-                  <i className="bi bi-envelope-at-fill"></i> {formData.email}
+                <p style={{ color: formData.textColor }}>
+                  <i
+                    className="bi bi-envelope-at-fill"
+                    style={{
+                      color: formData.iconColor || "inherit",
+                    }}
+                  ></i>{" "}
+                  {formData.email}
                 </p>
               )}
               {formData.phoneNumber && (
-                <p>
-                  <i className="bi bi-telephone-fill"></i>{" "}
+                <p style={{ color: formData.textColor }}>
+                  <i
+                    className="bi bi-telephone-fill"
+                    style={{ color: formData.iconColor || "inherit" }}
+                  ></i>{" "}
                   {formData.phoneNumber}
                 </p>
               )}
@@ -49,7 +66,10 @@ const User = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="bi bi-facebook fs-1"></i>
+                  <i
+                    className="bi bi-facebook fs-1"
+                    style={{ color: formData.iconColor || "inherit" }}
+                  ></i>
                 </a>
               )}
               {formData.instagram && (
@@ -58,7 +78,10 @@ const User = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="bi bi-instagram fs-1"></i>
+                  <i
+                    className="bi bi-instagram fs-1"
+                    style={{ color: formData.iconColor || "inherit" }}
+                  ></i>
                 </a>
               )}
               {formData.linkedIn && (
@@ -67,7 +90,10 @@ const User = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="bi bi-linkedin fs-1"></i>
+                  <i
+                    className="bi bi-linkedin fs-1"
+                    style={{ color: formData.iconColor || "inherit" }}
+                  ></i>
                 </a>
               )}
               {formData.github && (
@@ -76,7 +102,10 @@ const User = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="bi bi-github fs-1"></i>
+                  <i
+                    className="bi bi-github fs-1"
+                    style={{ color: formData.iconColor || "inherit" }}
+                  ></i>
                 </a>
               )}
             </div>

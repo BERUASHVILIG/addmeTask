@@ -2,7 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: FormState = {
   addUserForm: {
-    color: "",
+    backgroundColor: "",
+    backgroundImage: null,
+    textColor: "",
+    iconColor: "",
     image: null,
     firstName: "",
     lastName: "",

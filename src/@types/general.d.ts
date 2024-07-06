@@ -1,5 +1,8 @@
 interface AddUserFormState {
-  color: string;
+  backgroundColor: string;
+  backgroundImage: string | null;
+  textColor: string;
+  iconColor: string;
   image: string | null;
   firstName: string;
   lastName: string;

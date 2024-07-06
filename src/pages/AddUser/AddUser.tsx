@@ -15,15 +15,18 @@ const AddUser = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
-    if (name === "image" && files && files[0]) {
+    if ((name === "image" || name === "backgroundImage") && files && files[0]) {
       const file = files[0];
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        const result = reader.result as string;
+        if (name === "image" || name === "backgroundImage") {
+          setImagePreview(result);
+        }
         dispatch(
           updateFormData({
             field: name as keyof typeof formData,
-            value: reader.result as string,
+            value: result,
           })
         );
       };
@@ -167,7 +170,7 @@ const AddUser = () => {
                   onChange={handleChange}
                 />
               </div>
-              <p>Click below field for choose backgroundColor </p>
+              <p>choose backgroundColor </p>
               <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1">
                   <i className="bi bi-palette"></i>
@@ -176,13 +179,61 @@ const AddUser = () => {
                   type="color"
                   style={{ height: "calc(2.375rem + 2px)", cursor: "pointer" }}
                   className="form-control"
-                  name="color"
-                  value={formData.color}
+                  name="backgroundColor"
+                  value={formData.backgroundColor}
                   onChange={handleChange}
                   placeholder="Color"
                   required
                 />
               </div>
+            </div>
+            <p>Choose Text Color </p>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">
+                <i className="bi bi-palette"></i>
+              </span>
+              <input
+                type="color"
+                style={{ height: "calc(2.375rem + 2px)", cursor: "pointer" }}
+                className="form-control"
+                name="textColor"
+                value={formData.textColor}
+                onChange={handleChange}
+                placeholder="textColor"
+                required
+              />
+            </div>
+            <p>Choose Icon Color </p>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">
+                <i className="bi bi-palette"></i>
+              </span>
+              <input
+                type="color"
+                style={{ height: "calc(2.375rem + 2px)", cursor: "pointer" }}
+                className="form-control"
+                name="iconColor"
+                value={formData.iconColor}
+                onChange={handleChange}
+                placeholder="iconColor"
+                required
+              />
+            </div>
+            <p>Choose backgroundImage </p>
+            <div className="input-group mb-3">
+              <span className="input-group-text" id="basic-addon1">
+                <i className="bi bi-card-image"></i>
+              </span>
+              <input
+                type="file"
+                style={{ height: "calc(2.375rem + 2px)", cursor: "pointer" }}
+                className="form-control"
+                name="backgroundImage"
+                accept="image/*"
+                onChange={handleChange}
+                placeholder="bacgroundImage"
+                required
+              />
             </div>
             <button type="submit" className="btn btn-primary mt-3 mb-5">
               Submit

@@ -1,0 +1,12 @@
+.backgroundImage {
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 85vh;
+  width: 70vw;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
